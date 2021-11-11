@@ -59,6 +59,7 @@ public class LancamentosController {
         return ResponseEntity.ok(read);
     }
 
+    //método novo
     @GetMapping(value = "/lancamentos/categoria/{categoryName}")
     @ApiOperation(value="Busca um ID de Categoria pelo Nome")
     public ResponseEntity<?> findByName (@PathVariable String categoryName){
