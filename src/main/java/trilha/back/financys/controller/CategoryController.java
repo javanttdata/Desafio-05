@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 //import trilha.back.financys.DTO.CategoryDTO;
 import trilha.back.financys.entities.Category;
 import trilha.back.financys.repositories.CategoryRepository;
+import trilha.back.financys.services.CategoryService;
+//import trilha.back.financys.services.CategoryService;
+
 import java.util.List;
 
 
@@ -20,6 +23,9 @@ public class CategoryController {
 
     @Autowired
     private CategoryRepository repository;
+
+    @Autowired
+    private CategoryService categoryService;
 
     @PostMapping("/categorias")
     @ResponseStatus(HttpStatus.CREATED)
