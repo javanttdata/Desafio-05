@@ -28,10 +28,9 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @PostMapping("/categorias")
-    @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "Cria uma Categoria")
-    public Category create(@RequestBody Category category){
-        return repository.save(category);
+    public ResponseEntity<Category> create(@RequestBody Category category){
+        return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(category));
     }
 
     @GetMapping("/categorias")
@@ -59,8 +58,9 @@ public class CategoryController {
     @DeleteMapping("/categorias/{id}")
     @ApiOperation(value="Deleta uma Categoria pelo ID")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteCategory(@PathVariable Long id){
+    public ResponseEntity<?> deleteCategory(@PathVariable Long id){
         repository.deleteById(id);
+        return  ResponseEntity.status(HttpStatus.OK).build();
     }
 
 }

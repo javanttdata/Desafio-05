@@ -8,13 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 //import trilha.back.financys.DTO.LancamentosDTO;
+import trilha.back.financys.entities.Category;
 import trilha.back.financys.entities.Lancamentos;
-import trilha.back.financys.repositories.CategoryRepository;
 import trilha.back.financys.repositories.LancamentosRepository;
 import trilha.back.financys.services.CategoryService;
 import trilha.back.financys.services.LancamentosService;
-
-import javax.persistence.EntityNotFoundException;
 import java.util.*;
 
 @RestController
@@ -36,20 +34,20 @@ public class LancamentosController {
 
     @PostMapping("/lancamentos")
     @ApiOperation(value = "Cria um lançamento")
-    public Lancamentos create (@RequestBody Lancamentos lancamentos) {
-         return lancamentosService.create(lancamentos);
+    public ResponseEntity<?> create (@RequestBody Lancamentos lancamentos) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(lancamentosService.create(lancamentos));
         }
 
     @GetMapping("/lancamentos")
     @ApiOperation(value= "Lista os Lancamentos")
-    public List<Lancamentos> findAll (@RequestParam (value = "paid", required = false)Boolean paid){
+    public ResponseEntity<List<Lancamentos>> findAll (@RequestParam (value = "paid", required = false)Boolean paid){
         List<Lancamentos> lancamentos = new ArrayList<>();
         if (Objects.isNull(paid)){
             lancamentos = lancamentosRepository.findAll();
         }else{
             lancamentos = lancamentosRepository.findByPaid(paid);
         }
-        return lancamentos;
+        return ResponseEntity.ok(lancamentos);
     }
 
     @GetMapping("/lancamentos/{id}")
@@ -59,7 +57,6 @@ public class LancamentosController {
         return ResponseEntity.ok(read);
     }
 
-    //método novo
     @GetMapping(value = "/lancamentos/categoria/{categoryName}")
     @ApiOperation(value="Busca um ID de Categoria pelo Nome")
     public ResponseEntity<?> findByName (@PathVariable String categoryName){
@@ -75,12 +72,12 @@ public class LancamentosController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-
     @DeleteMapping("/lancamentos/{id}")
     @ApiOperation(value="Deleta um Lancamento pelo ID")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteLancamentos(@PathVariable Long id){
+    public ResponseEntity<?> deleteLancamentos(@PathVariable Long id){
         lancamentosRepository.deleteById(id);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 }
