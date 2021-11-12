@@ -4,7 +4,6 @@ package trilha.back.financys.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -16,8 +15,6 @@ public class Category {
     private Long id;
     private String name;
     private String description;
-
-
 
     @OneToMany(mappedBy = "category")
     @JsonIgnore

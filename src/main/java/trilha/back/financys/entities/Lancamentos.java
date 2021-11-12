@@ -1,7 +1,6 @@
 package trilha.back.financys.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -24,7 +23,6 @@ public class Lancamentos {
 
     private boolean paid;
 
-
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
@@ -41,7 +39,6 @@ public class Lancamentos {
         this.amount = amount;
         this.dataLancamento = dataLancamento;
         this.paid = paid;
-
 
     }
 
