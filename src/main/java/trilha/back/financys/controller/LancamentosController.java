@@ -3,18 +3,20 @@ package trilha.back.financys.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 //import trilha.back.financys.DTO.LancamentosDTO;
-import trilha.back.financys.entities.Category;
+import trilha.back.financys.DTO.LancamentosDTO;
 import trilha.back.financys.entities.Lancamentos;
 import trilha.back.financys.repositories.LancamentosRepository;
 import trilha.back.financys.services.CategoryService;
 import trilha.back.financys.services.LancamentosService;
 import java.util.*;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api")
 @Api(value="Desafio 3 Cybertron")
@@ -63,6 +65,11 @@ public class LancamentosController {
     public ResponseEntity<?> findByName (@PathVariable String categoryName){
         Long category = categoryService.idCategoryByName(categoryName);
         return ResponseEntity.ok(category);
+    }
+
+    @GetMapping("/lancamentos/categoria")
+    public List<LancamentosDTO> readDTO(){
+        return lancamentosService.retornarListaDTO();
     }
 
     @PutMapping(value = "/lancamentos/{id}")

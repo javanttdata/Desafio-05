@@ -2,19 +2,20 @@ package trilha.back.financys.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-//import trilha.back.financys.DTO.CategoryDTO;
+import trilha.back.financys.DTO.CategoryDTO;
 import trilha.back.financys.entities.Category;
 import trilha.back.financys.repositories.CategoryRepository;
 import trilha.back.financys.services.CategoryService;
-//import trilha.back.financys.services.CategoryService;
+import trilha.back.financys.services.CategoryService;
 
 import java.util.List;
 
-
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api")
 @Api(value="Desafio 3 Cybertron")
@@ -46,6 +47,7 @@ public class CategoryController {
         Category read = repository.findById(id).get();
         return ResponseEntity.ok(read);
     }
+
 
     @PutMapping(value = "/categorias/{id}")
     @ApiOperation(value="Atualiza as Categorias pelo ID")
