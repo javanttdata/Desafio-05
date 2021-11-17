@@ -15,18 +15,9 @@ import java.time.LocalDate;
 @Builder
 public class LancamentosDTO {
 
-    private String name;
+    private String categoryName;
     private String description;
     private String type;
     private String amount;
-
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate dataLancamento;
-
-    private boolean paid;
-    private Category category;
-
-
-
 
 }
