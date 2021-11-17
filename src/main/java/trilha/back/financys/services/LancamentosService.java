@@ -39,12 +39,14 @@ public class LancamentosService {
        return lancamentosRepository.save(lancamentos);
     }
 
-    private LancamentosDTO mapToDTO(Lancamentos lancamentos){
-        return mapper.map(lancamentos, LancamentosDTO.class);
+    private LancamentosDTO mapToDto(Lancamentos lancamentos){
+        LancamentosDTO lancamentosDTO = mapper.map(lancamentos, LancamentosDTO.class);
+        return lancamentosDTO;
     }
 
     private Lancamentos mapToEntity(LancamentosDTO lancamentosDTO){
-       return mapper.map(lancamentosDTO,Lancamentos.class);
+        Lancamentos lancamentos = mapper.map(lancamentosDTO, Lancamentos.class);
+       return lancamentos;
     }
 
 
@@ -53,7 +55,7 @@ public class LancamentosService {
         for (Lancamentos lancamentoCategoria : listaLancamentos){
             lancamentoCategoria.getCategory();
         }
-        return listaLancamentos.stream().map(this::mapToDTO).collect(Collectors.toList());
+        return listaLancamentos.stream().map(this::mapToDto).collect(Collectors.toList());
     }
 
 
