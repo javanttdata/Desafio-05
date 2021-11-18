@@ -24,7 +24,6 @@ public class LancamentosService {
 
     private List<LancamentosDTO> lancamentosDTOList = new ArrayList<>();
 
-
     public boolean validadeCategoryByIdL(long idCategory){
         Optional<Category> category = categoryRepository.findById(idCategory);
         return category.isPresent();
@@ -49,7 +48,6 @@ public class LancamentosService {
        return lancamentos;
     }
 
-
     public List<LancamentosDTO> retornarListaDTO() {
         List<Lancamentos> listaLancamentos = lancamentosRepository.findAll();
         for (Lancamentos lancamentoCategoria : listaLancamentos){
@@ -57,6 +55,5 @@ public class LancamentosService {
         }
         return listaLancamentos.stream().map(this::mapToDto).collect(Collectors.toList());
     }
-
 
 }

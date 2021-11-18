@@ -19,11 +19,12 @@ public class CategoryService {
     private CategoryRepository categoryRepository;
 
     private List<CategoryDTO> CategoryListDTO = new ArrayList<>();
+
     private ModelMapper modelMapper;
 
-    public CategoryService(CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
-    }
+   // public CategoryService(CategoryRepository categoryRepository) {
+  //      this.categoryRepository = categoryRepository;
+  //  }
 
      public Long idCategoryByName(String nameCategory ) {
         Category read = categoryRepository.findByName(nameCategory);
