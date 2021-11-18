@@ -7,12 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import trilha.back.financys.DTO.CategoryDTO;
 import trilha.back.financys.entities.Category;
 import trilha.back.financys.repositories.CategoryRepository;
 import trilha.back.financys.services.CategoryService;
-import trilha.back.financys.services.CategoryService;
-
+import javax.validation.Valid;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -30,7 +28,7 @@ public class CategoryController {
 
     @PostMapping("/categorias")
     @ApiOperation(value = "Cria uma Categoria")
-    public ResponseEntity<Category> create(@RequestBody Category category){
+    public ResponseEntity<Category> create(@RequestBody @Valid Category category){
         return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(category));
     }
 

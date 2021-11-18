@@ -14,6 +14,8 @@ import trilha.back.financys.entities.Lancamentos;
 import trilha.back.financys.repositories.LancamentosRepository;
 import trilha.back.financys.services.CategoryService;
 import trilha.back.financys.services.LancamentosService;
+
+import javax.validation.Valid;
 import java.util.*;
 
 @RequiredArgsConstructor
@@ -37,7 +39,7 @@ public class LancamentosController {
 
     @PostMapping("/lancamentos")
     @ApiOperation(value = "Cria um lançamento")
-    public ResponseEntity<?> create (@RequestBody Lancamentos lancamentos) {
+    public ResponseEntity<Lancamentos> create (@RequestBody @Valid Lancamentos lancamentos) {
         return ResponseEntity.status(HttpStatus.CREATED).body(lancamentosService.create(lancamentos));
         }
 
