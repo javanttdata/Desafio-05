@@ -71,7 +71,7 @@ public class LancamentosController {
 
     @GetMapping("/lancamentos/categoria")
     public List<LancamentosDTO> readDTO(){
-        return lancamentosService.retornarListaDTO();
+        return lancamentosService.retornarListaDto();
     }
 
     @PutMapping(value = "/lancamentos/{id}")

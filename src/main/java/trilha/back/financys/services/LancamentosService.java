@@ -48,12 +48,19 @@ public class LancamentosService {
        return lancamentos;
     }
 
-    public List<LancamentosDTO> retornarListaDTO() {
+    public List<LancamentosDTO> retornarListaDto(){
         List<Lancamentos> listaLancamentos = lancamentosRepository.findAll();
-        for (Lancamentos lancamentoCategoria : listaLancamentos){
-            lancamentoCategoria.getCategory();
-        }
+        lancamentosRepository.getClass();
         return listaLancamentos.stream().map(this::mapToDto).collect(Collectors.toList());
     }
+
+//  ============================Identico ao método acima, porém utilizando FOR ============================
+//    public List<LancamentosDTO> retornarListaDTO() {
+//        List<Lancamentos> listaLancamentos = lancamentosRepository.findAll();
+//        for (Lancamentos lancamentoCategoria : listaLancamentos){
+//            lancamentoCategoria.getCategory();
+//        }
+//        return listaLancamentos.stream().map(this::mapToDto).collect(Collectors.toList());
+//    }
 
 }
