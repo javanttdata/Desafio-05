@@ -42,7 +42,7 @@ public class Lancamentos {
       private String dataLancamento;
 
     @NotNull(message = "{paid.not.null}")
-    private boolean paid;
+    private Boolean paid;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
