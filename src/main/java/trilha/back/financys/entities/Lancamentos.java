@@ -29,9 +29,10 @@ public class Lancamentos {
     @Size(min = 15, max = 50, message = "{description.size}")
     private String description;
 
-    @NotBlank(message = "{type.not.blank}")
-    @Size(min = 3, max = 10, message = "{type.size}")
-    private String type;
+    @Enumerated(value = EnumType.STRING)
+    @NotNull(message = "{type.not.null}")
+//    @Size(min = 3, max = 10, message = "{type.size}")
+    private TipoLancamento type;
 
     @NotNull(message = "{amount.not.null}")
     @Min(value = 0, message = "{amount.min}")

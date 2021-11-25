@@ -3,6 +3,7 @@ package trilha.back.financys.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.models.auth.In;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,7 @@ import trilha.back.financys.services.CategoryService;
 import trilha.back.financys.services.LancamentosService;
 
 import javax.validation.Valid;
+import java.sql.SQLOutput;
 import java.util.*;
 
 @RequiredArgsConstructor
@@ -89,5 +91,13 @@ public class LancamentosController {
         lancamentosRepository.deleteById(id);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
+
+    @GetMapping(value = "/calcula/{x}/{y}")
+    @ApiOperation(value = "Calcula a Média")
+    public Integer calculaMedia (@PathVariable("x") Integer x, @PathVariable("y") Integer y){
+//
+        return lancamentosService.calculaMedia(x, y);
+    }
+
 
 }
