@@ -59,7 +59,7 @@ public class LancamentosService {
         try {
             return (x / y);
         } catch (ArithmeticException e) {
-            throw new DivisaoZeroException("Na matemática, não se pode dividir por zero");
+            throw new DivisaoZeroException("Na matemática, não se pode dividir por zero --- " + e);
         }
     }
 }
