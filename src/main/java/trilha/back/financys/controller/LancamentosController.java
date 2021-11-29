@@ -47,19 +47,19 @@ public class LancamentosController {
     @GetMapping("/lancamentos")
     @ApiOperation(value= "Lista os Lancamentos")
     public ResponseEntity<List<Lancamentos>> findAll (@RequestParam (value = "paid", required = false)Boolean paid){
-        List<Lancamentos> lancamentos = new ArrayList<>();
-        if (Objects.isNull(paid)){
-            lancamentos = lancamentosRepository.findAll();
-        }else{
-            lancamentos = lancamentosRepository.findByPaid(paid);
+      List<Lancamentos> lancamentos = new ArrayList<>();
+            if (Objects.isNull(paid)){
+                lancamentos = lancamentosRepository.findAll();
+            }else{
+                lancamentos = lancamentosRepository.findByPaid(paid);
+            }
+            return ResponseEntity.ok(lancamentos);
         }
-        return ResponseEntity.ok(lancamentos);
-    }
 
     @GetMapping("/lancamentos/{id}")
     @ApiOperation(value="Retorna os Lancamentos pelo ID")
     public ResponseEntity<Lancamentos> read(@PathVariable Long id){
-        Lancamentos read = lancamentosRepository.findById(id).get();
+        Lancamentos read = lancamentosService.read(id).getBody();
         return ResponseEntity.ok(read);
     }
 
@@ -79,7 +79,7 @@ public class LancamentosController {
     @ApiOperation(value="Atualiza os Lancamentos pelo ID")
     public ResponseEntity<Lancamentos> update(@PathVariable(name = "id") Long id, @RequestBody Lancamentos lancamentos){
         lancamentos.setId(id);
-        lancamentosRepository.save(lancamentos);
+        lancamentosService.save(lancamentos);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
@@ -87,10 +87,12 @@ public class LancamentosController {
     @ApiOperation(value="Deleta um Lancamento pelo ID")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> deleteLancamentos(@PathVariable Long id){
-        lancamentosRepository.deleteById(id);
+        lancamentosService.deleteLancamentos(id);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
+
+//  ####### Exercício de calcular média ########
     @GetMapping(value = "/calcula/{x}/{y}")
     @ApiOperation(value = "Calcula a Média")
     public Integer calculaMedia (@PathVariable("x") Integer x, @PathVariable("y") Integer y){
