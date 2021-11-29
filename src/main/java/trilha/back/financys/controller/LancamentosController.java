@@ -35,7 +35,6 @@ public class LancamentosController {
     @Autowired
     private LancamentosService lancamentosService;
 
-    //  teste branch
     @Autowired
     private CategoryService categoryService;
 
@@ -95,7 +94,6 @@ public class LancamentosController {
     @GetMapping(value = "/calcula/{x}/{y}")
     @ApiOperation(value = "Calcula a Média")
     public Integer calculaMedia (@PathVariable("x") Integer x, @PathVariable("y") Integer y){
-//
         return lancamentosService.calculaMedia(x, y);
     }
 
