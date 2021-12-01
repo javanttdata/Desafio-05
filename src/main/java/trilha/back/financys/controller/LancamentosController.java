@@ -3,7 +3,6 @@ package trilha.back.financys.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.models.auth.In;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,9 +14,7 @@ import trilha.back.financys.entities.Lancamentos;
 import trilha.back.financys.repositories.LancamentosRepository;
 import trilha.back.financys.services.CategoryService;
 import trilha.back.financys.services.LancamentosService;
-
 import javax.validation.Valid;
-import java.sql.SQLOutput;
 import java.util.*;
 
 @RequiredArgsConstructor
@@ -26,11 +23,6 @@ import java.util.*;
 @Api(value="Desafio 3 Cybertron")
 @CrossOrigin(origins ="*")
 public class LancamentosController {
-
-
-
-    @Autowired
-    private LancamentosRepository lancamentosRepository;
 
     @Autowired
     private LancamentosService lancamentosService;
@@ -46,12 +38,13 @@ public class LancamentosController {
 
     @GetMapping("/lancamentos")
     @ApiOperation(value= "Lista os Lancamentos")
-    public ResponseEntity<List<Lancamentos>> findAll (@RequestParam (value = "paid", required = false)Boolean paid){
+    public ResponseEntity<List<Lancamentos>> findAll (@RequestParam (value = "paid", required = false)
+                                                                  Boolean paid){
       List<Lancamentos> lancamentos = new ArrayList<>();
             if (Objects.isNull(paid)){
-                lancamentos = lancamentosRepository.findAll();
+                lancamentos = lancamentosService.findAll(paid).getBody();
             }else{
-                lancamentos = lancamentosRepository.findByPaid(paid);
+                lancamentos = lancamentosService.findAll(paid).getBody();
             }
             return ResponseEntity.ok(lancamentos);
         }

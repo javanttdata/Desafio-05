@@ -44,15 +44,15 @@ public class LancamentosService {
         return lancamentosRepository.save(lancamentos);
     }
 
-//    public ResponseEntity<List<Lancamentos>> findAll (Boolean paid){
-//        List<Lancamentos> lancamentos = new ArrayList<>();
-//        if (Objects.isNull(paid)){
-//            lancamentos = lancamentosRepository.findAll();
-//        }else{
-//            lancamentos = lancamentosRepository.findByPaid(paid);
-//        }
-//        return ResponseEntity.ok(lancamentos);
-//    }
+    public ResponseEntity<List<Lancamentos>> findAll (Boolean paid){
+        List<Lancamentos> lancamentos = new ArrayList<>();
+        if (Objects.isNull(paid)){
+            lancamentos = lancamentosRepository.findAll();
+        }else{
+            lancamentos = lancamentosRepository.findByPaid(paid);
+        }
+        return ResponseEntity.ok(lancamentos);
+    }
 
     public ResponseEntity<Lancamentos> read (Long id){
         Lancamentos read = lancamentosRepository.findById(id).get();
