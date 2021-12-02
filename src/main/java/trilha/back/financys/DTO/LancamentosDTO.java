@@ -15,5 +15,4 @@ public class LancamentosDTO {
     private String description;
     private String type;
     private String amount;
-
 }

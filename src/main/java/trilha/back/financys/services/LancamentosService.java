@@ -1,6 +1,5 @@
 package trilha.back.financys.services;
 
-
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -93,7 +92,6 @@ public class LancamentosService {
 
     public Lancamentos save(Lancamentos lancamentos){
         return lancamentosRepository.save(lancamentos);
-
     }
 }
 

@@ -1,13 +1,11 @@
 package trilha.back.financys.entities;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.time.LocalDate;
+
 
 @Entity
 @Table(name = "tb_lancamentos")
@@ -31,7 +29,6 @@ public class Lancamentos {
 
     @Enumerated(value = EnumType.STRING)
     @NotNull(message = "{type.not.null}")
-//    @Size(min = 3, max = 10, message = "{type.size}")
     private TipoLancamento type;
 
     @NotNull(message = "{amount.not.null}")

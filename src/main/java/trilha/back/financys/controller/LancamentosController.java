@@ -1,6 +1,5 @@
 package trilha.back.financys.controller;
 
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -82,13 +81,10 @@ public class LancamentosController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-
 //  ####### Exercício de calcular média ########
     @GetMapping(value = "/calcula/{x}/{y}")
     @ApiOperation(value = "Calcula a Média")
     public Integer calculaMedia (@PathVariable("x") Integer x, @PathVariable("y") Integer y){
         return lancamentosService.calculaMedia(x, y);
     }
-
-
 }
