@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import trilha.back.financys.DTO.LancamentosDTO;
 import trilha.back.financys.entities.Lancamentos;
+import trilha.back.financys.exceptions.LancamentoNuloException;
+import trilha.back.financys.exceptions.NoContentException;
 import trilha.back.financys.services.CategoryService;
 import trilha.back.financys.services.LancamentosService;
 import javax.validation.Valid;
@@ -23,7 +25,6 @@ public class LancamentosController {
 
     @Autowired
     private LancamentosService lancamentosService;
-
     @Autowired
     private CategoryService categoryService;
 
@@ -86,5 +87,17 @@ public class LancamentosController {
     @ApiOperation(value = "Calcula a Média")
     public Integer calculaMedia (@PathVariable("x") Integer x, @PathVariable("y") Integer y){
         return lancamentosService.calculaMedia(x, y);
+    }
+
+//  Endpoint para testes
+    @GetMapping("/lancamentos/filter")
+    @ResponseBody
+    public ResponseEntity <List<Lancamentos>> getLancamentosDependentes(
+            @RequestParam(value = "dataLancamento", required = false) String dataLancamento,
+            @RequestParam(value = "amount", required = false) Double amount,
+            @RequestParam(value = "paid", required = false) Boolean paid
+            ) throws LancamentoNuloException, NoContentException {
+
+        return new ResponseEntity<>(lancamentosService.getLancamentosDependentes(dataLancamento, amount, paid), HttpStatus.OK);
     }
 }

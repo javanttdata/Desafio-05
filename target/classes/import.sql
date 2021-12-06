@@ -4,3 +4,4 @@
 --
 --
 --INSERT INTO tb_lancamentos(name, description, type, amount, dataLancamento, paid, categoryId) VALUES('salario', 'recebimento', 'dinheiro', '300', "05/11/2021", true, "1")
+--INSERT INTO tb_lancamentos(name, description, type, amount, dataLancamento, paid, categoryId) VALUES('venda', 'recebimento', 'dinheiro', '500', "10/04/2021", false, "2")

@@ -1,16 +1,21 @@
 package trilha.back.financys.services;
 
+import javassist.tools.web.BadHttpRequest;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import trilha.back.financys.DTO.LancamentosDTO;
 import trilha.back.financys.entities.Category;
 import trilha.back.financys.entities.Lancamentos;
 import trilha.back.financys.exceptions.DivisaoZeroException;
+import trilha.back.financys.exceptions.LancamentoNuloException;
+import trilha.back.financys.exceptions.NoContentException;
 import trilha.back.financys.repositories.CategoryRepository;
 import trilha.back.financys.repositories.LancamentosRepository;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -92,6 +97,25 @@ public class LancamentosService {
 
     public Lancamentos save(Lancamentos lancamentos){
         return lancamentosRepository.save(lancamentos);
+    }
+
+    //Desafio 12  - TESTES
+
+    public List<Lancamentos> getLancamentosDependentes(String dataLancamento, Double amount, Boolean paid) throws LancamentoNuloException, NoContentException {
+
+        if (dataLancamento == null || amount == null){
+            throw new LancamentoNuloException("Parâmetros com valores errados.");
+        }
+        List<Lancamentos>lancamentos = lancamentosRepository.findAll()
+                .stream()
+                .filter(lancamento -> lancamento.getDataLancamento().equals(dataLancamento) &&
+                        lancamento.getAmount().equals(amount) && lancamento.getPaid() == paid)
+                                .collect(Collectors.toList());
+
+        if (CollectionUtils.isEmpty(lancamentos)){
+            throw new NoContentException("Vazio");
+        }
+        return lancamentos;
     }
 }
 
