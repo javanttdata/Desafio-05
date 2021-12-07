@@ -36,16 +36,9 @@ public class LancamentosController {
 
     @GetMapping("/lancamentos")
     @ApiOperation(value= "Lista os Lancamentos")
-    public ResponseEntity<List<Lancamentos>> findAll (@RequestParam (value = "paid", required = false)
-                                                                  Boolean paid){
-      List<Lancamentos> lancamentos = new ArrayList<>();
-            if (Objects.isNull(paid)){
-                lancamentos = lancamentosService.findAll(paid).getBody();
-            }else{
-                lancamentos = lancamentosService.findAll(paid).getBody();
-            }
-            return ResponseEntity.ok(lancamentos);
-        }
+    public ResponseEntity<List<Lancamentos>> getAll (){
+        return new ResponseEntity<>(lancamentosService.getAll(), HttpStatus.OK);
+    }
 
     @GetMapping("/lancamentos/{id}")
     @ApiOperation(value="Retorna os Lancamentos pelo ID")

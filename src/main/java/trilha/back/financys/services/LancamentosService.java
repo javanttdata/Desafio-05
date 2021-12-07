@@ -1,6 +1,5 @@
 package trilha.back.financys.services;
 
-import javassist.tools.web.BadHttpRequest;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -45,14 +44,8 @@ public class LancamentosService {
         return lancamentosRepository.save(lancamentos);
     }
 
-    public ResponseEntity<List<Lancamentos>> findAll (Boolean paid){
-        List<Lancamentos> lancamentos = new ArrayList<>();
-        if (Objects.isNull(paid)){
-            lancamentos = lancamentosRepository.findAll();
-        }else{
-            lancamentos = lancamentosRepository.findByPaid(paid);
-        }
-        return ResponseEntity.ok(lancamentos);
+    public List<Lancamentos> getAll(){
+        return lancamentosRepository.findAll();
     }
 
     public ResponseEntity<Lancamentos> read (Long id){
@@ -104,7 +97,7 @@ public class LancamentosService {
     public List<Lancamentos> getLancamentosDependentes(String dataLancamento, Double amount, Boolean paid) throws LancamentoNuloException, NoContentException {
 
         if (dataLancamento == null || amount == null){
-            throw new LancamentoNuloException("Parâmetros com valores errados.");
+            throw new LancamentoNuloException("=====Parâmetros com valores errados=====");
         }
         List<Lancamentos>lancamentos = lancamentosRepository.findAll()
                 .stream()
@@ -113,7 +106,7 @@ public class LancamentosService {
                                 .collect(Collectors.toList());
 
         if (CollectionUtils.isEmpty(lancamentos)){
-            throw new NoContentException("Vazio");
+            throw new NoContentException("=====A lista está vazia=====");
         }
         return lancamentos;
     }
