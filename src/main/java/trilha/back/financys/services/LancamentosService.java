@@ -15,6 +15,8 @@ import trilha.back.financys.exceptions.NoContentException;
 import trilha.back.financys.repositories.CategoryRepository;
 import trilha.back.financys.repositories.LancamentosRepository;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -94,7 +96,7 @@ public class LancamentosService {
 
     //Desafio 12  - TESTES
 
-    public List<Lancamentos> getLancamentosDependentes(String dataLancamento, Double amount, Boolean paid) throws LancamentoNuloException, NoContentException {
+    public List<Lancamentos> getLancamentosDependentes(String dataLancamento, @NotNull String amount, Boolean paid) throws LancamentoNuloException, NoContentException {
 
         if (dataLancamento == null || amount == null){
             throw new LancamentoNuloException("=====Parâmetros com valores errados=====");

@@ -27,16 +27,15 @@ public class Lancamentos {
     @Size(min = 15, max = 50, message = "{description.size}")
     private String description;
 
-    @Enumerated(value = EnumType.STRING)
-    @NotNull(message = "{type.not.null}")
-    private TipoLancamento type;
+//    @Enumerated(value = EnumType.STRING)
+//    @NotNull(message = "{type.not.null}")
+    private String type;
 
     @NotNull(message = "{amount.not.null}")
     @Min(value = 0, message = "{amount.min}")
-    private Double amount;
+    private String amount;
 
-    @NotBlank(message = "{dataLancamento.not.blank}")
-//    @JsonFormat(pattern = "dd/MM/yyyy")
+//    @NotBlank(message = "{dataLancamento.not.blank}")
       private String dataLancamento;
 
     @NotNull(message = "{paid.not.null}")

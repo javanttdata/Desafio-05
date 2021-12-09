@@ -14,6 +14,7 @@ import trilha.back.financys.exceptions.NoContentException;
 import trilha.back.financys.services.CategoryService;
 import trilha.back.financys.services.LancamentosService;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.*;
 
 @RequiredArgsConstructor
@@ -87,7 +88,7 @@ public class LancamentosController {
     @ResponseBody
     public ResponseEntity <List<Lancamentos>> getLancamentosDependentes(
             @RequestParam(value = "dataLancamento", required = false) String dataLancamento,
-            @RequestParam(value = "amount", required = false) Double amount,
+            @RequestParam(value = "amount", required = false) @NotNull String amount,
             @RequestParam(value = "paid", required = false) Boolean paid
             ) throws LancamentoNuloException, NoContentException {
 

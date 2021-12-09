@@ -30,14 +30,14 @@ public class TrilhaBackTestService {
         List<Lancamentos> lancamentos = new ArrayList<>();
         Lancamentos lancamento = new Lancamentos();
         lancamento.setDataLancamento("12/12/2021");
-        lancamento.setAmount(300.5);
+        lancamento.setAmount("300");
         lancamento.setPaid(true);
         lancamentos.add(lancamento);
 
         when(lancamentosRepository.findAll()).thenReturn(lancamentos);
 
         Assertions.assertFalse(lancamentosService.getAll().isEmpty());
-        Assertions.assertEquals(1, lancamentosService.getLancamentosDependentes("12/12/2021", 300.5, true).size());
+        Assertions.assertEquals(1, lancamentosService.getLancamentosDependentes("12/12/2021", "300", true).size());
     }
 
 }
