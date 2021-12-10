@@ -32,7 +32,7 @@ public class LancamentosController {
     @PostMapping("/lancamentos")
     @ApiOperation(value = "Cria um lançamento")
     public ResponseEntity<Lancamentos> create (@RequestBody @Valid Lancamentos lancamentos) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(lancamentosService.create(lancamentos));
+        return ResponseEntity.status(HttpStatus.CREATED).body(lancamentosService.save(lancamentos));
         }
 
     @GetMapping("/lancamentos")
