@@ -1,6 +1,6 @@
 <h2> Desafio 14 :books: :robot:<h2>
 
-Desafio 01 - GIT:
+<p>Desafio 01 - GIT:
 I – Quando você está trabalhando em uma branch e outra pessoa também e vocês querem unificar essas modificações antes de mesclar com a branch main. E quando você termina de trabalhar em uma branch e necessita mesclar suas modificações com a main.
 II – O commit é utilizado para criar um status do projeto (nele, inclusive, é possível inserir um comentário que facilita a identidicação das alterações feitas). O Commit é feito antes do comando push, que “joga” as alterações pra nuvem.
 III – 
@@ -119,5 +119,5 @@ I – O processo de integração foi bem tranquilo da minha parte, pois o front 
 II – A principal dificuldade foi entender como a mágica acontece quando se dá os comandos para subir a aplicação (npm e ng). Também tive um pouco de dificuldade em relação à versão do Angular que não deixava eu instalar corretamente e, consequentemente, não permitia subir a aplicação de front. Precisei ver video tutorial na internet para aprender a instalar de maneira forçada a versão correta. Depois disso, funcionou corretamente.
 III – Não. Eu tinha mesmo era um erro na função CREATE, pois chamava create() e não funcionava. Quando troquei para .save() funcionou tanto to Postman, quanto no Front. 
 IV – O CORS é uma especificação de segurança de navegadores, assim é o seu navegador em que você esta desenvolvendo sua aplicação que esta barrando suas requisições. Isso ocorre pois os navegadores usam a técnica de preflight, uma requisição de verificação que seu browser faz ao recurso que você deseja consumir e verifica se sua requisição para consumi-lo está de acordo com as políticas de CORS definidas no back-end.
-V – Sim.
+ V – Sim. </p>
 
